@@ -12,6 +12,6 @@ while getopts ":v" option; do
   esac
 done
 
-install_packages
+update_and_install_packages
 
 print_block_message "Installation completed"
