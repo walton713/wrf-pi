@@ -1,20 +1,9 @@
 #!/usr/bin/env bash
 
-GREEN=$'\e[0;32m'
-NC=$'\e[0m'
+source ./src/utils.sh
+source ./src/packages.sh
 
-print_message() {
-  echo ""
-  echo ""
-  echo -e "${GREEN}####################################################################################################${NC}"
-  echo -e "${GREEN}#${NC}"
-  echo -e "${GREEN}#${NC}"
-  echo -e "${GREEN}# $1${NC}"
-  echo -e "${GREEN}#${NC}"
-  echo -e "${GREEN}#${NC}"
-  echo -e "${GREEN}####################################################################################################${NC}"
-  echo ""
-  echo ""
-}
+print_message "Updating system and installing required packages"
+install_packages
 
-print_message "Hello World!"
+print_message "System updated and packages installed"
