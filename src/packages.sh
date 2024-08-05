@@ -19,5 +19,5 @@ upgrade() {
 
 install() {
   print_update_message "Installing required packages..."
-  run_command "sudo apt-get install gfortran libcurl4-gnutls-dev libxml2-dev m4 cmake libjpeg-dev -y"
+  run_command "sudo apt-get install gfortran libcurl4-gnutls-dev libxml2-dev m4 cmake libjpeg-dev mpich -y"
 }
