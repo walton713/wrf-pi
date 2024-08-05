@@ -3,7 +3,15 @@
 source ./src/utils.sh
 source ./src/packages.sh
 
-print_message "Updating system and installing required packages"
+VERBOSE=false
+
+while getopts ":v" option; do
+  case $option in
+    v)
+      VERBOSE=true;;
+  esac
+done
+
 install_packages
 
-print_message "System updated and packages installed"
+print_block_message "Installation completed"
