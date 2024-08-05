@@ -2,8 +2,10 @@
 
 source ./src/utils.sh
 source ./src/packages.sh
+source ./src/zlib.sh
 
 VERBOSE=false
+ZLIB_VERSION="1.3.1"
 
 while getopts ":v" option; do
   case $option in
@@ -13,5 +15,6 @@ while getopts ":v" option; do
 done
 
 update_and_install_packages
+install_zlib
 
 print_block_message "Installation completed"
