@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-HDF5_DIR=${HOME}/hdf5
-HDF5_BUILD=${HOME}/hdf5_build
-HDF5_INSTALL=${HOME}/WRF/libraries/hdf5
-
 install_hdf5() {
   print_block_message "Installing HDF5"
   hdf5_setup

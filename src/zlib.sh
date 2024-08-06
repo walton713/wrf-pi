@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-ZLIB_DIR=${HOME}/zlib
-ZLIB_BUILD=${HOME}/zlib_build
-ZLIB_INSTALL=${HOME}/WRF/libraries/zlib
-
 install_zlib() {
   print_block_message "Installing zlib"
   zlib_setup
