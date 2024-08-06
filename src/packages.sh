@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 update_and_install_packages() {
-  print_block_message "Updating system and installing required packages"
+  print_block_message "Updating System and Installing Required Packages"
   update
   upgrade
   install
@@ -9,15 +9,18 @@ update_and_install_packages() {
 
 update() {
   print_update_message "Updating system..."
-  run_command "sudo apt update"
+  sudo apt get update
+  [[ $? -ne 0 ]] && print_error_message "Error while updating system" && exit 1
 }
 
 upgrade() {
   print_update_message "Upgrading packages..."
-  run_command "sudo apt upgrade -y"
+  sudo apt upgrade -y
+  [[ $? -ne 0 ]] && print_error_message "Error while upgrading packages" && exit 1
 }
 
 install() {
   print_update_message "Installing required packages..."
-  run_command "sudo apt-get install gfortran libcurl4-gnutls-dev libxml2-dev m4 cmake libjpeg-dev mpich -y"
+  sudo apt-get install gfortran libcurl4-gnutls-dev libxml2-dev m4 cmake libjpeg-dev mpich -y
+  [[ $? -ne 0 ]] && print_error_message "Error while installing packages" && exit 1
 }

@@ -27,17 +27,3 @@ print_update_message() {
 print_error_message() {
   echo -e "${RED}$1${NC}"
 }
-
-run_command() {
-  if [[ $VERBOSE = true ]]
-  then
-    { ERR=$(${1} 2>&1 >&3 3>&-); } 3>&1
-  else
-    ERR=$(${1} 1>/dev/null 2>&1)
-  fi
-
-  if [[ $? -ne 0 ]]
-  then
-    print_error_message "Error while running command '${1}': ${ERR}"
-  fi
-}
