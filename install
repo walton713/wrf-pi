@@ -1,13 +1,36 @@
 #!/usr/bin/env bash
 
+TEMP=$(getopt -l skip-packages,skip-zlib,skip-hdf5 -n 'install' -- "$@")
+if [ $? -ne 0 ]
+then
+  print_error_message "Error parsing arguments"
+  exit 1
+fi
+
+eval set -- "$TEMP"
+
+SKIP_PACKAGES=false
+SKIP_ZLIB=false
+SKIP_HDF5=false
+
+while true; do
+  case "$1" in
+    --skip-packages ) SKIP_PACKAGES=true; shift ;;
+    --skip-zlib ) SKIP_ZLIB=true; shift ;;
+    --skip-hdf5 ) SKIP_HDF5=true; shift ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
 source vars
 source ./src/utils.sh
 source ./src/packages.sh
 source ./src/zlib.sh
 source ./src/hdf5.sh
 
-update_and_install_packages
-install_zlib
-install_hdf5
+[[ ! $SKIP_PACKAGES ]] && update_and_install_packages
+[[ ! $SKIP_ZLIB ]] && install_zlib
+[[ ! $SKIP_HDF5 ]] && install_hdf5
 
 print_block_message "Installation completed"
