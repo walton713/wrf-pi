@@ -29,8 +29,19 @@ source ./src/packages.sh
 source ./src/zlib.sh
 source ./src/hdf5.sh
 
-if [[ ! $SKIP_PACKAGES ]]; then update_and_install_packages; fi
-if [[ ! $SKIP_ZLIB ]]; then install_zlib; fi
-if [[ ! $SKIP_HDF5 ]]; then install_hdf5; fi
+if [[ "$SKIP_PACKAGES" != true ]]
+then
+  update_and_install_packages
+fi
+
+if [[ "$SKIP_ZLIB" != true ]]
+then
+  install_zlib
+fi
+
+if [[ "$SKIP_HDF5" != true ]]
+then
+  install_hdf5
+fi
 
 print_block_message "Installation completed"
