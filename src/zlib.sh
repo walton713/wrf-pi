@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ZLIB_DIR=${HOME}/zlib
-ZLIB_BUILD=${HOME}/build
+ZLIB_BUILD=${HOME}/zlib_build
 ZLIB_INSTALL=${HOME}/WRF/libraries/zlib
 
 install_zlib() {
@@ -19,20 +19,16 @@ zlib_setup() {
 
 zlib_download() {
   print_update_message "Downloading zlib..."
-  run_command "cd ${ZLIB_DIR}"
-  run_command "wget https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}/zlib-${ZLIB_VERSION}.tar.gz"
-  run_command "tar xfz zlib-${ZLIB_VERSION}.tar.gz"
+  run_command "cd ${ZLIB_DIR} && wget https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}/zlib-${ZLIB_VERSION}.tar.gz && tar xfz zlib-${ZLIB_VERSION}.tar.gz"
 }
 
 zlib_install() {
   print_update_message "Installing zlib..."
-  run_command "cd ${ZLIB_BUILD}"
-  run_command "../zlib-${ZLIB_VERSION}/configure --prefix=${ZLIB_INSTALL}"
-  run_command "make && make install"
+  run_command "cd ${ZLIB_BUILD} && ../zlib-${ZLIB_VERSION}/configure --prefix=${ZLIB_INSTALL} && make && make install"
   run_command "export PATH=${PATH}:${ZLIB_INSTALL}"
 }
 
 zlib_cleanup() {
   print_update_message "Removing zlib build..."
-  run_command "rm -rf ${ZLIB_DIR}" ${ZLIB_BUILD}
+  run_command "rm -rf ${ZLIB_DIR} ${ZLIB_BUILD}"
 }
