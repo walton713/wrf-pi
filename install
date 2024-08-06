@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-TEMP=$(getopt -l skip-packages,skip-zlib,skip-hdf5 -n 'install' -- "$@")
-if [ $? -ne 0 ]
+TEMP=$(getopt -o '' -l skip-packages,skip-zlib,skip-hdf5 -n 'install' -- "$@")
+if [[ $? -ne 0 ]]
 then
   print_error_message "Error parsing arguments"
   exit 1
@@ -29,8 +29,8 @@ source ./src/packages.sh
 source ./src/zlib.sh
 source ./src/hdf5.sh
 
-[[ ! $SKIP_PACKAGES ]] && update_and_install_packages
-[[ ! $SKIP_ZLIB ]] && install_zlib
-[[ ! $SKIP_HDF5 ]] && install_hdf5
+if [[ ! $SKIP_PACKAGES ]]; then update_and_install_packages; fi
+if [[ ! $SKIP_ZLIB ]]; then install_zlib; fi
+if [[ ! $SKIP_HDF5 ]]; then install_hdf5; fi
 
 print_block_message "Installation completed"
