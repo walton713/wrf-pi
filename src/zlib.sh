@@ -38,8 +38,6 @@ zlib_install() {
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make' on zlib install" && exit 1
   make install
   [[ $? -ne 0 ]] && print_error_message "Error while running installing zlib" && exit 1
-  export PATH=${PATH}:${ZLIB_INSTALL}
-  [[ $: -ne 0 ]] && print_error_message "Error updating PATH variable" && exit 1
 }
 
 zlib_cleanup() {
