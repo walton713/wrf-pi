@@ -32,7 +32,7 @@ zlib_install() {
   print_update_message "Installing zlib..."
   cd ${ZLIB_BUILD}
   [[ $? -ne 0 ]] && print_error_message "Error while moving to zlib build directory" && exit 1
-  ../zlib-${ZLIB_VERSION}/configure --prefix=${ZLIB_INSTALL}
+  ../zlib/zlib-${ZLIB_VERSION}/configure --prefix=${ZLIB_INSTALL}
   [[ $? -ne 0 ]] && print_error_message "Error while configuring zlib install" && exit 1
   make
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make' on zlib install" && exit 1
