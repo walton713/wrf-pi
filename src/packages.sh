@@ -9,7 +9,7 @@ update_and_install_packages() {
 
 update() {
   print_update_message "Updating system..."
-  sudo apt get update
+  sudo apt update
   [[ $? -ne 0 ]] && print_error_message "Error while updating system" && exit 1
 }
 
