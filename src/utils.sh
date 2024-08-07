@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-RED=$'\e[0;31m'
-GREEN=$'\e[0;32m'
-NC=$'\e[0m'
-
 print_block_message() {
   echo ""
   echo ""

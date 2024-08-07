@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-ZLIB_DIR=${HOME}/zlib
-ZLIB_BUILD=${HOME}/zlib_build
-ZLIB_INSTALL=${HOME}/WRF/libraries/zlib
-
 install_zlib() {
   print_block_message "Installing zlib"
   zlib_setup
@@ -32,12 +28,12 @@ zlib_install() {
   print_update_message "Installing zlib..."
   cd ${ZLIB_BUILD}
   [[ $? -ne 0 ]] && print_error_message "Error while moving to zlib build directory" && exit 1
-  ../zlib/zlib-${ZLIB_VERSION}/configure --prefix=${ZLIB_INSTALL}
+  ${ZLIB_DIR}/zlib-${ZLIB_VERSION}/configure --prefix=${ZLIB_INSTALL}
   [[ $? -ne 0 ]] && print_error_message "Error while configuring zlib install" && exit 1
   make
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make' on zlib install" && exit 1
   make install
-  [[ $? -ne 0 ]] && print_error_message "Error while running installing zlib" && exit 1
+  [[ $? -ne 0 ]] && print_error_message "Error while installing zlib" && exit 1
 }
 
 zlib_cleanup() {
