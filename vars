@@ -6,6 +6,7 @@ ZLIB_VERSION="1.3.1"
 HDF5_VERSION="1.14.4.3"
 NETCDF_C_VERSION="4.9.2"
 NETCDF_F_VERSION="4.6.1"
+LIBPNG_VERSION="1.6.43"
 
 # utils
 
@@ -32,3 +33,9 @@ NETCDF_C_BUILD=${HOME}/netcdf-c_build
 NETCDF_F_DIR=${HOME}/netcdf-f
 NETCDF_F_BUILD=${HOME}/netcdf-f_build
 NETCDF_INSTALL=${HOME}/WRF/libraries/netcdf
+
+# libpng
+
+LIBPNG_DIR=${HOME}/libpng
+LIBPNG_BUILD=${HOME}/libpng_build
+LIBPNG_INSTALL=${HOME}/grib2

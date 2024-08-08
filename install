@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TEMP=$(getopt -o '' -l skip-packages,skip-zlib,skip-hdf5,skip-netcdf -n 'install' -- "$@")
+TEMP=$(getopt -o '' -l skip-packages,skip-zlib,skip-hdf5,skip-netcdf,skip-libpng -n 'install' -- "$@")
 if [[ $? -ne 0 ]]
 then
   print_error_message "Error parsing arguments"
@@ -13,6 +13,7 @@ SKIP_PACKAGES=false
 SKIP_ZLIB=false
 SKIP_HDF5=false
 SKIP_NETCDF=false
+SKIP_LIBPNG=false
 
 while true; do
   case "$1" in
@@ -20,6 +21,7 @@ while true; do
     --skip-zlib ) SKIP_ZLIB=true; shift ;;
     --skip-hdf5 ) SKIP_HDF5=true; shift ;;
     --skip-netcdf ) SKIP_NETCDF=true; shift ;;
+    --skip-libpng ) SKIP_LIBPNG=true; shift ;;
     -- ) shift; break ;;
     * ) break ;;
   esac
@@ -31,6 +33,7 @@ source ./src/packages.sh
 source ./src/zlib.sh
 source ./src/hdf5.sh
 source ./src/netcdf.sh
+source ./src/libpng.sh
 
 if [[ "$SKIP_PACKAGES" != true ]]
 then
@@ -50,6 +53,11 @@ fi
 if [[ "$SKIP_NETCDF" != true ]]
 then
   install_netcdf
+fi
+
+if [[ "$SKIP_LIBPNG" != true ]]
+then
+  install_libpng
 fi
 
 print_block_message "Installation completed"
