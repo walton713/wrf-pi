@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TEMP=$(getopt -o '' -l skip-packages,skip-zlib,skip-hdf5 -n 'install' -- "$@")
+TEMP=$(getopt -o '' -l skip-packages,skip-zlib,skip-hdf5,skip-netcdf -n 'install' -- "$@")
 if [[ $? -ne 0 ]]
 then
   print_error_message "Error parsing arguments"
@@ -12,12 +12,14 @@ eval set -- "$TEMP"
 SKIP_PACKAGES=false
 SKIP_ZLIB=false
 SKIP_HDF5=false
+SKIP_NETCDF=false
 
 while true; do
   case "$1" in
     --skip-packages ) SKIP_PACKAGES=true; shift ;;
     --skip-zlib ) SKIP_ZLIB=true; shift ;;
     --skip-hdf5 ) SKIP_HDF5=true; shift ;;
+    --skip-netcdf ) SKIP_NETCDF=true; shift ;;
     -- ) shift; break ;;
     * ) break ;;
   esac
@@ -28,6 +30,7 @@ source ./src/utils.sh
 source ./src/packages.sh
 source ./src/zlib.sh
 source ./src/hdf5.sh
+source ./src/netcdf.sh
 
 if [[ "$SKIP_PACKAGES" != true ]]
 then
@@ -42,6 +45,11 @@ fi
 if [[ "$SKIP_HDF5" != true ]]
 then
   install_hdf5
+fi
+
+if [[ "$SKIP_NETCDF" != true ]]
+then
+  install_netcdf
 fi
 
 print_block_message "Installation completed"
