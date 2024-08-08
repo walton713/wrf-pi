@@ -30,6 +30,11 @@ libpng_install() {
   [[ $? -ne 0 ]] && print_error_message "Error while moving to libpng build directory" && exit 1
   ${LIBPNG_DIR}/libpng-${LIBPNG_VERSION}/configure --prefix=${LIBPNG_INSTALL}
   [[ $? -ne 0 ]] && print_error_message "Error while configuring libpng install" && exit 1
+  ZLIBLIB=${ZLIB_INSTALL}/lib export ZLIBLIB
+  ZLIBINC=${ZLIB_INSTALL}/include export ZLIBINC
+  CPPFLAGS="-I$ZLIBINC" export CPPFLAGS
+  LDFLAGS="-L$ZLIBLIB" export LDFLAGS
+  LD_LIBRARY_PATH="$ZLIBLIB:$LD_LIBRARY_PATH" export LD_LIBRARY_PATH
   make check
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make check' on libpng install" && exit 1
   make install
