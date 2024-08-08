@@ -34,7 +34,7 @@ netcdf_install() {
   print_update_message "Installing netcdf..."
   cd ${NETCDF_C_BUILD}
   [[ $? -ne 0 ]] && print_error_message "Error while moving to netcdf-c build directory" && exit 1
-  CPPFLAGS='-I${ZLIB_INSTALL}/include -I${HDF5_INSTALL}' LDFLAGS='-L${ZLIB_INSTALL}/lib -L${HDF5_INSTALL}/lib' ${NETCDF_C_DIR}/netcdf-c-${NETCDF_C_VERSION}/configure --prefix=${NETCDF_INSTALL}
+  CPPFLAGS="-I${ZLIB_INSTALL}/include -I${HDF5_INSTALL}/include" LDFLAGS="-L${ZLIB_INSTALL}/lib -L${HDF5_INSTALL}/lib" ${NETCDF_C_DIR}/netcdf-c-${NETCDF_C_VERSION}/configure --prefix=${NETCDF_INSTALL}
   [[ $? -ne 0 ]] && print_error_message "Error while configuring netcdf-c install" && exit 1
   make check
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make check' on netcdf-c install" && exit 1
@@ -42,7 +42,7 @@ netcdf_install() {
   [[ $? -ne 0 ]] && print_error_message "Error while installing netcdf-c" && exit 1
   cd ${NETCDF_F_BUILD}
   [[ $? -ne 0 ]] && print_error_message "Error while moving to netcdf-fortran build directory" && exit 1
-  CPPFLAGS='-I${ZLIB_INSTALL}/include -I${HDF5_INSTALL}/include -I${NETCDF_INSTALL}/include' LDFLAGS='-L${ZLIB_INSTALL}/lib -L${HDF5_INSTALL}/lib -L${NETCDF_INSTALL}/lib' ${NETCDF_F_DIR}/netcdf-fortran-${NETCDF_F_VERSION}/configure --prefix=${NETCDF_INSTALL}
+  CPPFLAGS="-I${ZLIB_INSTALL}/include -I${HDF5_INSTALL}/include -I${NETCDF_INSTALL}/include" LDFLAGS="-L${ZLIB_INSTALL}/lib -L${HDF5_INSTALL}/lib -L${NETCDF_INSTALL}/lib" ${NETCDF_F_DIR}/netcdf-fortran-${NETCDF_F_VERSION}/configure --prefix=${NETCDF_INSTALL}
   [[ $? -ne 0 ]] && print_error_message "Error while configuring netcdf-fortran install" && exit 1
   make check
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make check' on netcdf-fortran install" && exit 1
