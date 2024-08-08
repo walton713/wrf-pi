@@ -38,4 +38,4 @@ NETCDF_INSTALL=${HOME}/WRF/libraries/netcdf
 
 LIBPNG_DIR=${HOME}/libpng
 LIBPNG_BUILD=${HOME}/libpng_build
-LIBPNG_INSTALL=${HOME}/grib2
+LIBPNG_INSTALL=${HOME}/WRF/libraries/grib2
