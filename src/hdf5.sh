@@ -30,9 +30,9 @@ hdf5_install() {
   [[ $? -ne 0 ]] && print_error_message "Error while moving to HDF5 build directory" && exit 1
   ${HDF5_DIR}/hdf5-hdf5_${HDF5_VERSION}/configure --with-zlib=${ZLIB_INSTALL} --prefix=${HDF5_INSTALL} --enable-hl
   [[ $? -ne 0 ]] && print_error_message "Error while configuring HDF5 install" && exit 1
-  make check
+  sudo make check
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make check' on HDF5 install" && exit 1
-  make install
+  sudo make install
   [[ $? -ne 0 ]] && print_error_message "Error while installing HDF5" && exit 1
 }
 

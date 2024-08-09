@@ -18,13 +18,13 @@ NC=$'\e[0m'
 
 ZLIB_DIR=${HOME}/zlib
 ZLIB_BUILD=${HOME}/zlib_build
-ZLIB_INSTALL=${HOME}/WRF/libraries/zlib
+ZLIB_INSTALL=/usr/local
 
 # hdf5
 
 HDF5_DIR=${HOME}/hdf5
 HDF5_BUILD=${HOME}/hdf5_build
-HDF5_INSTALL=${HOME}/WRF/libraries/hdf5
+HDF5_INSTALL=/usr/local
 
 # netcdf
 

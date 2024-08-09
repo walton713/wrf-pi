@@ -30,9 +30,9 @@ zlib_install() {
   [[ $? -ne 0 ]] && print_error_message "Error while moving to zlib build directory" && exit 1
   ${ZLIB_DIR}/zlib-${ZLIB_VERSION}/configure --prefix=${ZLIB_INSTALL}
   [[ $? -ne 0 ]] && print_error_message "Error while configuring zlib install" && exit 1
-  make check
+  sudo make check
   [[ $? -ne 0 ]] && print_error_message "Error while running 'make check' on zlib install" && exit 1
-  make install
+  sudo make install
   [[ $? -ne 0 ]] && print_error_message "Error while installing zlib" && exit 1
 }
 
